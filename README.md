@@ -208,16 +208,16 @@ while ($count -lt $NUMBER_OF_ACCOUNTS_TO_CREATE) {
 <br />
 
 <p>
-text
+This script will create 10,000 random users with the password "Password1" in the _EMPLOYEES OU after selecting Run Script.
 </p>
 <br />
 
 <p>
-text
+Go back to Active Directory Users and Computers and open the _EMPLOYEES OU to view the users the script has created. Select a User and log into Client-1 with it.
 </p>
 <br />
 
 <p>
-text
+Congratulations on completing the lab! We have successfully deployed Active Directory and created new users!
 </p>
 <br />
