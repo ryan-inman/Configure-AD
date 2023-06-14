@@ -67,52 +67,145 @@ Observe the ping requests now working in Client-1.
 <br />
 
 <p>
-We will now install Active Directory on the Domain Controller. On DC-1 click start and search for "Server Manager". Select "Add roles and features" in the Server Manager Dashboard.
+We will now install Active Directory on the Domain Controller. On DC-1 click start and search for "Server Manager". Select "Add roles and features" in the Server Manager Dashboard and click Next until you reach Server Roles.
 </p>
 <br />
 
 <p>
-text
+Select "Active Directory Domain Services" and add features.
 </p>
 <br />
 
 <p>
-text
+Now click Next through the rest of installation process and Install.
 </p>
 <br />
 
 <p>
-text
+Navigate back to the Server Manager Dashboard and select the flag on the top right hand side. Click "Promote this server to a domain controller" to finish installing Active Directory.
 </p>
 <br />
 
 <p>
-text
+Now in Deployment Configuration select "Add a new forest" and create a Root domain name. For this lab we will be using mydomain.com as our Root domain name.
 </p>
 <br />
 
 <p>
-text
+For Domain Controller Options create a Directory Service Restore Mode (DSRM) password and select Next until the Installation tab where you will Install. Remote Desktop will restart after. 
 </p>
 <br />
 
 <p>
-text
+To log back into DC-1 we now have to use the Fully Qualified Domain Name (FQDN). For us this would be mydomain.com\labuser.
 </p>
 <br />
 
 <p>
-text
+In DC-1, go to the start menu and open "Active Directory Users and Computers". Right click the domain and select New -> Organizational Unit. Name this Unit "_EMPLOYEES" and create another one named "_ADMINS".
 </p>
 <br />
 
 <p>
-text
+In the "_ADMINS" Organizational Unit we can create an account. Right-click in the folder and select New -> User. Fill out the Users account with the information I use below. Make sure to use a password you will remember and uncheck every box.
 </p>
 <br />
 
 <p>
-text
+To grant admin privileges to our new user, follow these steps: Right-click on the account and choose Properties. Navigate to the "Member Of" tab and click on Add. Enter "domain admins" and click on "Check Names". Next, you will see the default security group. Simply select it, click apply, and then click ok to complete the process.
+</p>
+<br />
+
+<p>
+Log out of DC-1 and log back in under the new admin account.
+</p>
+<br />
+
+<p>
+Let's proceed with connecting Client-1 to the domain by following these steps: Locate Client-1 within the Azure Portal and navigate to the Networking Settings tab. Choose the virtual NIC associated with Client-1 and access the DNS Servers section. Opt for the custom option and input the private IP address of DC-1 as the designated DNS server.
+</p>
+<br />
+
+<p>
+Restart Client-1 from the Azure Portal and login as our original labuser. We can now add Client-1 to the domain. Go to system -> "Rename this PC" -> Change -> Domain and type in the domain.
+</p>
+<br />
+
+<p>
+Now we will get a tab prompting us to login with an account that has permission to join the domain. Use the admin account previously created. Client-1 will now automatically restart.
+</p>
+<br />
+
+<p>
+Log back in using the admin account. Currently, only Administrators have permission to access Client-1. We will modify this setting to allow all domain users to log in.
+</p>
+<br />
+
+<p>
+Right-click on the start menu and navigate to system -> remote desktop. Choose "Select users that can remotely access this PC" and click on Add. Type "domain users" and select "Check Names", then click OK. This will grant access to all domain users, allowing them to log into Client-1 remotely.
+</p>
+<br />
+
+<p>
+We will now create additional users to put into our _EMPLOYEES Organizational Unit in DC-1. Login to DC-1 under the admin account and open Powershell_ise as an administrator. Create a new File and paste the following script into it:
+</p>
+<br />
+
+<p>
+<details>  
+  <summary> <h6>Powershell Script</h6> </summary>
+  
+  
+```powershell
+# ----- Edit these Variables for your own Use Case ----- #
+$PASSWORD_FOR_USERS   = "Password1"
+$NUMBER_OF_ACCOUNTS_TO_CREATE = 10000
+# ------------------------------------------------------ #
+
+Function generate-random-name() {
+    $consonants = @('b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z')
+    $vowels = @('a','e','i','o','u','y')
+    $nameLength = Get-Random -Minimum 3 -Maximum 7
+    $count = 0
+    $name = ""
+
+    while ($count -lt $nameLength) {
+        if ($($count % 2) -eq 0) {
+            $name += $consonants[$(Get-Random -Minimum 0 -Maximum $($consonants.Count - 1))]
+        }
+        else {
+            $name += $vowels[$(Get-Random -Minimum 0 -Maximum $($vowels.Count - 1))]
+        }
+        $count++
+    }
+
+    return $name
+
+}
+
+$count = 1
+while ($count -lt $NUMBER_OF_ACCOUNTS_TO_CREATE) {
+    $fisrtName = generate-random-name
+    $lastName = generate-random-name
+    $username = $fisrtName + '.' + $lastName
+    $password = ConvertTo-SecureString $PASSWORD_FOR_USERS -AsPlainText -Force
+
+    Write-Host "Creating user: $($username)" -BackgroundColor Black -ForegroundColor Cyan
+    
+    New-AdUser -AccountPassword $password `
+               -GivenName $firstName `
+               -Surname $lastName `
+               -DisplayName $username `
+               -Name $username `
+               -EmployeeID $username `
+               -PasswordNeverExpires $true `
+               -Path "ou=_EMPLOYEES,$(([ADSI]`"").distinguishedName)" `
+               -Enabled $true
+    $count++
+}
+```
+  
+</details>
 </p>
 <br />
 
