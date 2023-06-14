@@ -149,8 +149,6 @@ Right-click on the start menu and navigate to system -> remote desktop. Choose "
 <p>
 We will now create additional users to put into our _EMPLOYEES Organizational Unit in DC-1. Login to DC-1 under the admin account and open Powershell_ise as an administrator. Create a new File and paste the following script into it:
 </p>
-<br />
-
 <p>
 <details>  
   <summary> <h6>Powershell Script</h6> </summary>
