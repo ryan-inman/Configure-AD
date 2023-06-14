@@ -24,10 +24,15 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>High-Level Deployment and Configuration Steps</h2>
 
-- Step 1
-- Step 2
-- Step 3
-- Step 4
+- Create the Domain Controller and Client VMs
+- Configure the NIC Private IP address of the Domain Controller (DC-1) to static
+- Enable ICMPv4 in the local Windows Firewall of DC-1
+- Install Active Directory on the Domain Controller
+- Promote DC-1 to a domain controller
+- Create Organizational Units and an Admin Account in Active Directory
+- Connect Client-1 to the domain
+- Create users using a Powershell script
+- Login to Client-1 with one of the users
 
 <h2>Deployment and Configuration Steps</h2>
 
