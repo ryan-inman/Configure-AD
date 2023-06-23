@@ -47,11 +47,6 @@ Let's configure the Domain Controller's NIC Private IP address to static. This i
 <br />
 
 <p>
-Now we can test connectivity between the Client and Domain Controller. Log in to "Client-1" using Remote Desktop and initiate a perpetual ping (ping -t) to DC-1's private IP address. Note that the request will time out because DC-1's firewall is blocking ICMP traffic.
-</p>
-<br />
-
-<p>
 Now login to the Domain Controller so that we can enable ICMPv4 in the local Windows Firewall. This will allow ping requests between the Client and Domain Controller.
 </p>
 <br />
@@ -62,7 +57,7 @@ From DC-1's desktop click start and search "Windows Defender Firewall with Advan
 <br />
 
 <p>
-Observe the ping requests now working in Client-1.
+Go back to Client-1 and initiate a perpetual ping to confirm the connection betweeen the Client and Domain Controller.
 </p>
 <br />
 
@@ -127,12 +122,7 @@ Let's proceed with connecting Client-1 to the domain by following these steps: L
 <br />
 
 <p>
-Restart Client-1 from the Azure Portal and login as our original labuser. We can now add Client-1 to the domain. Go to system -> "Rename this PC" -> Change -> Domain and type in the domain.
-</p>
-<br />
-
-<p>
-Now we will get a tab prompting us to login with an account that has permission to join the domain. Use the admin account previously created. Client-1 will now automatically restart.
+Restart Client-1 from the Azure Portal and login as our original labuser. We can now add Client-1 to the domain. Go to system -> "Rename this PC" -> Change -> Domain and type in the domain. Additionally, a tab will prompt us to login with an account that has permissions to join the domain. Use the admin account previously created.
 </p>
 <br />
 
