@@ -33,106 +33,149 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <p>
 We will start by creating the Domain Controller and Client VMs. Set up the Domain Controller VM (Windows Server 2022) named "DC-1". Note the Resource Group and Virtual Network (Vnet) created during the VM setup.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Create the Client VM (Windows 10) named "Client-1" using the same Resource Group and Vnet as the Domain Controller.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Let's configure the Domain Controller's NIC Private IP address to static. This is required to allow the Client VM to join the domain. Locate DC-1 select Networking -> Network Interface -> IP configurations -> ipconfig1 and switch the Assignment to "Static".
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Now login to the Domain Controller so that we can enable ICMPv4 in the local Windows Firewall. This will allow ping requests between the Client and Domain Controller.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 From DC-1's desktop click start and search "Windows Defender Firewall with Advanced Security". Select Inbound Rules and sort by Protocol for easier navigation. Now right click the two Inbound Rules named "Core Networking Diagnostics - ICMP Echo Request (ICMPv4-In)" and select Enable Rule.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
-Go back to Client-1 and initiate a perpetual ping to confirm the connection betweeen the Client and Domain Controller.
+Go back to Client-1 and initiate a perpetual ping (ping -t) to confirm the connection betweeen the Client and Domain Controller.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 We will now install Active Directory on the Domain Controller. On DC-1 click start and search for "Server Manager". Select "Add roles and features" in the Server Manager Dashboard and click Next until you reach Server Roles.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Select "Active Directory Domain Services" and add features.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Now click Next through the rest of installation process and Install.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Navigate back to the Server Manager Dashboard and select the flag on the top right hand side. Click "Promote this server to a domain controller" to finish installing Active Directory.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Now in Deployment Configuration select "Add a new forest" and create a Root domain name. For this lab we will be using mydomain.com as our Root domain name.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 For Domain Controller Options create a Directory Service Restore Mode (DSRM) password and select Next until the Installation tab where you will Install. Remote Desktop will restart after. 
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 To log back into DC-1 we now have to use the Fully Qualified Domain Name (FQDN). For us this would be mydomain.com\labuser.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 In DC-1, go to the start menu and open "Active Directory Users and Computers". Right click the domain and select New -> Organizational Unit. Name this Unit "_EMPLOYEES" and create another one named "_ADMINS".
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 In the "_ADMINS" Organizational Unit we can create an account. Right-click in the folder and select New -> User. Fill out the Users account with the information I use below. Make sure to use a password you will remember and uncheck every box.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 To grant admin privileges to our new user, follow these steps: Right-click on the account and choose Properties. Navigate to the "Member Of" tab and click on Add. Enter "domain admins" and click on "Check Names". Next, you will see the default security group. Simply select it, click apply, and then click ok to complete the process.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Log out of DC-1 and log back in under the new admin account.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Let's proceed with connecting Client-1 to the domain by following these steps: Locate Client-1 within the Azure Portal and navigate to the Networking Settings tab. Choose the virtual NIC associated with Client-1 and access the DNS Servers section. Opt for the custom option and input the private IP address of DC-1 as the designated DNS server.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Restart Client-1 from the Azure Portal and login as our original labuser. We can now add Client-1 to the domain. Go to system -> "Rename this PC" -> Change -> Domain and type in the domain. Additionally, a tab will prompt us to login with an account that has permissions to join the domain. Use the admin account previously created.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Log back in using the admin account. Currently, only Administrators have permission to access Client-1. We will modify this setting to allow all domain users to log in.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Right-click on the start menu and navigate to system -> remote desktop. Choose "Select users that can remotely access this PC" and click on Add. Type "domain users" and select "Check Names", then click OK. This will grant access to all domain users, allowing them to log into Client-1 remotely.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
@@ -194,16 +237,23 @@ while ($count -lt $NUMBER_OF_ACCOUNTS_TO_CREATE) {
 ```
   
 </details>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 This script will create 10,000 random users with the password "Password1" in the _EMPLOYEES OU after selecting Run Script.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
 <p>
 Go back to Active Directory Users and Computers and open the _EMPLOYEES OU to view the users the script has created. Select a User and log into Client-1 with it.
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
+<p align="center"><img src="blank" height="70%" width="70%" alt="blank"/> </p>
 </p>
 <br />
 
