@@ -128,22 +128,22 @@ In DC-1, go to the start menu and open "Active Directory Users and Computers". R
 
 <p>
 In the "_ADMINS" Organizational Unit we can create an account. Right-click in the folder and select New -> User. Fill out the Users account with the information I use below. Make sure to use a password you will remember and uncheck every box.
-<p align="center"><img src="https://i.imgur.com/0oIhhtm.png" height="70%" width="70%" alt="create account"/> </p>
-<p align="center"><img src="https://i.imgur.com/Ld38TYZ.png" height="70%" width="70%" alt="create account"/> </p>
+<p align="center"><img src="https://i.imgur.com/0oIhhtm.png" height="50%" width="50%" alt="create account"/> </p>
+<p align="center"><img src="https://i.imgur.com/Ld38TYZ.png" height="50%" width="50%" alt="create account"/> </p>
 </p>
 <br />
 
 <p>
 To grant admin privileges to our new user, follow these steps: Right-click on the account and choose Properties. Navigate to the "Member Of" tab and click on Add. Enter "domain admins" and click on "Check Names". Next, you will see the default security group. Simply select it, click apply, and then click ok to complete the process.
 <p align="center"><img src="https://i.imgur.com/ZQPuoUo.png" height="70%" width="70%" alt="grant admin privileges"/> </p>
-<p align="center"><img src="https://i.imgur.com/dhmGRa2.png" height="50%" width="50%" alt="grant admin privileges"/> </p>
+<p align="center"><img src="https://i.imgur.com/dhmGRa2.png" height="40%" width="40%" alt="grant admin privileges"/> </p>
 <p align="center"><img src="https://i.imgur.com/kAtD9eo.png" height="70%" width="70%" alt="grant admin privileges"/> </p>
 </p>
 <br />
 
 <p>
 Log out of DC-1 and log back in under the new admin account.
-<p align="center"><img src="https://i.imgur.com/uzFhnaz.png" height="50%" width="50%" alt="log into admin account"/> </p>
+<p align="center"><img src="https://i.imgur.com/uzFhnaz.png" height="40%" width="40%" alt="log into admin account"/> </p>
 </p>
 <br />
 
@@ -158,9 +158,9 @@ Let's proceed with connecting Client-1 to the domain by following these steps: L
 <p>
 Restart Client-1 from the Azure Portal and login as our original labuser. We can now add Client-1 to the domain. Go to system -> "Rename this PC" -> Change -> Domain and type in the domain. Additionally, a tab will prompt us to login with an account that has permissions to join the domain. Use the admin account previously created.
 <p align="center"><img src="https://i.imgur.com/TRr6nFC.png" height="70%" width="70%" alt="connect client 1 to domain"/> </p>
-<p align="center"><img src="https://i.imgur.com/3Z2McEl.png" height="60%" width="60%" alt="connect client 1 to domain"/> </p>
-<p align="center"><img src="https://i.imgur.com/awcES6A.png" height="60%" width="60%" alt="connect client 1 to domain"/> </p>
-<p align="center"><img src="https://i.imgur.com/3UhTwmH.png" height="70%" width="70%" alt="connect client 1 to domain"/> </p>
+<p align="center"><img src="https://i.imgur.com/3Z2McEl.png" height="40%" width="40%" alt="connect client 1 to domain"/> </p>
+<p align="center"><img src="https://i.imgur.com/awcES6A.png" height="40%" width="40%" alt="connect client 1 to domain"/> </p>
+<p align="center"><img src="https://i.imgur.com/3UhTwmH.png" height="40%" width="40%" alt="connect client 1 to domain"/> </p>
 </p>
 <br />
 
@@ -174,8 +174,8 @@ Log back in using the admin account. Currently, only Administrators have permiss
 Right-click on the start menu and navigate to system -> remote desktop. Choose "Select users that can remotely access this PC" and click on Add. Type "domain users" and select "Check Names", then click OK. This will grant access to all domain users, allowing them to log into Client-1 remotely.
 <p align="center"><img src="https://i.imgur.com/WMxGom4.png" height="70%" width="70%" alt="allow domain users"/> </p>
 <p align="center"><img src="https://i.imgur.com/FntMTR7.png" height="70%" width="70%" alt="allow domain users"/> </p>
-<p align="center"><img src="https://i.imgur.com/03AeZKx.png" height="70%" width="70%" alt="allow domain users"/> </p>
-<p align="center"><img src="https://i.imgur.com/1hYVQu4.png" height="70%" width="70%" alt="allow domain users"/> </p>
+<p align="center"><img src="https://i.imgur.com/03AeZKx.png" height="50%" width="50%" alt="allow domain users"/> </p>
+<p align="center"><img src="https://i.imgur.com/1hYVQu4.png" height="50%" width="50%" alt="allow domain users"/> </p>
 </p>
 <br />
 
@@ -253,7 +253,7 @@ This script will create 10,000 random users with the password "Password1" in the
 Go back to Active Directory Users and Computers and open the _EMPLOYEES OU to view the users the script has created. Select a User and log into Client-1 with it.
 <p align="center"><img src="https://i.imgur.com/NlFMu0m.png" height="70%" width="70%" alt="log into random user"/> </p>
 <p align="center"><img src="https://i.imgur.com/9p7QquS.png" height="70%" width="70%" alt="log into random user"/> </p>
-<p align="center"><img src="https://i.imgur.com/szZbsCr.png" height="50%" width="50%" alt="log into random user"/> </p>
+<p align="center"><img src="https://i.imgur.com/szZbsCr.png" height="40%" width="40%" alt="log into random user"/> </p>
 </p>
 <br />
 
