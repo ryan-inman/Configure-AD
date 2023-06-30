@@ -50,7 +50,7 @@ Create the Client VM (Windows 10) named "Client-1" using the same Resource Group
 Let's configure the Domain Controller's NIC Private IP address to static. This is required to allow the Client VM to join the domain. Locate DC-1 select Networking -> Network Interface -> IP configurations -> ipconfig1 and switch the Assignment to "Static".
 <p align="center"><img src="https://i.imgur.com/lWpDmsz.png" height="70%" width="70%" alt="configure ip"/> </p>
 <p align="center"><img src="https://i.imgur.com/KBiqAks.png" height="70%" width="70%" alt="configure ip"/> </p>
-<p align="center"><img src="https://i.imgur.com/KntdwZd.png" height="70%" width="70%" alt="configure ip"/> </p>
+<p align="center"><img src="https://i.imgur.com/KntdwZd.png" height="50%" width="50%" alt="configure ip"/> </p>
 </p>
 <br />
 
@@ -114,7 +114,7 @@ For Domain Controller Options create a Directory Service Restore Mode (DSRM) pas
 
 <p>
 To log back into DC-1 we now have to use the Fully Qualified Domain Name (FQDN). For us this would be mydomain.com\labuser.
-<p align="center"><img src="https://i.imgur.com/Y6759ii.png" height="70%" width="70%" alt="root domain name"/> </p>
+<p align="center"><img src="https://i.imgur.com/Y6759ii.png" height="50%" width="50%" alt="root domain name"/> </p>
 </p>
 <br />
 
@@ -136,14 +136,14 @@ In the "_ADMINS" Organizational Unit we can create an account. Right-click in th
 <p>
 To grant admin privileges to our new user, follow these steps: Right-click on the account and choose Properties. Navigate to the "Member Of" tab and click on Add. Enter "domain admins" and click on "Check Names". Next, you will see the default security group. Simply select it, click apply, and then click ok to complete the process.
 <p align="center"><img src="https://i.imgur.com/ZQPuoUo.png" height="70%" width="70%" alt="grant admin privileges"/> </p>
-<p align="center"><img src="https://i.imgur.com/dhmGRa2.png" height="70%" width="70%" alt="grant admin privileges"/> </p>
+<p align="center"><img src="https://i.imgur.com/dhmGRa2.png" height="50%" width="50%" alt="grant admin privileges"/> </p>
 <p align="center"><img src="https://i.imgur.com/kAtD9eo.png" height="70%" width="70%" alt="grant admin privileges"/> </p>
 </p>
 <br />
 
 <p>
 Log out of DC-1 and log back in under the new admin account.
-<p align="center"><img src="https://i.imgur.com/uzFhnaz.png" height="70%" width="70%" alt="log into admin account"/> </p>
+<p align="center"><img src="https://i.imgur.com/uzFhnaz.png" height="50%" width="50%" alt="log into admin account"/> </p>
 </p>
 <br />
 
@@ -158,15 +158,15 @@ Let's proceed with connecting Client-1 to the domain by following these steps: L
 <p>
 Restart Client-1 from the Azure Portal and login as our original labuser. We can now add Client-1 to the domain. Go to system -> "Rename this PC" -> Change -> Domain and type in the domain. Additionally, a tab will prompt us to login with an account that has permissions to join the domain. Use the admin account previously created.
 <p align="center"><img src="https://i.imgur.com/TRr6nFC.png" height="70%" width="70%" alt="connect client 1 to domain"/> </p>
-<p align="center"><img src="https://i.imgur.com/3Z2McEl.png" height="70%" width="70%" alt="connect client 1 to domain"/> </p>
-<p align="center"><img src="https://i.imgur.com/awcES6A.png" height="70%" width="70%" alt="connect client 1 to domain"/> </p>
+<p align="center"><img src="https://i.imgur.com/3Z2McEl.png" height="60%" width="60%" alt="connect client 1 to domain"/> </p>
+<p align="center"><img src="https://i.imgur.com/awcES6A.png" height="60%" width="60%" alt="connect client 1 to domain"/> </p>
 <p align="center"><img src="https://i.imgur.com/3UhTwmH.png" height="70%" width="70%" alt="connect client 1 to domain"/> </p>
 </p>
 <br />
 
 <p>
 Log back in using the admin account. Currently, only Administrators have permission to access Client-1. We will modify this setting to allow all domain users to log in.
-<p align="center"><img src="https://i.imgur.com/2aAJX7e.png" height="70%" width="70%" alt="log into admin account"/> </p>
+<p align="center"><img src="https://i.imgur.com/2aAJX7e.png" height="50%" width="50%" alt="log into admin account"/> </p>
 </p>
 <br />
 
@@ -253,7 +253,7 @@ This script will create 10,000 random users with the password "Password1" in the
 Go back to Active Directory Users and Computers and open the _EMPLOYEES OU to view the users the script has created. Select a User and log into Client-1 with it.
 <p align="center"><img src="https://i.imgur.com/NlFMu0m.png" height="70%" width="70%" alt="log into random user"/> </p>
 <p align="center"><img src="https://i.imgur.com/9p7QquS.png" height="70%" width="70%" alt="log into random user"/> </p>
-<p align="center"><img src="https://i.imgur.com/szZbsCr.png" height="70%" width="70%" alt="log into random user"/> </p>
+<p align="center"><img src="https://i.imgur.com/szZbsCr.png" height="50%" width="50%" alt="log into random user"/> </p>
 </p>
 <br />
 
